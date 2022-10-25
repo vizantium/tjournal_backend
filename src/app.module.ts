@@ -13,25 +13,15 @@ import { CommentEntity } from './comment/entities/comment.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      url: process.env.DATABASE_URL,
       type: 'postgres',
-      ssl: {
-        rejectUnauthorized: false,
-      },
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'qwerty2002',
+      database: 'tjournal',
       entities: [UserEntity, PostEntity, CommentEntity],
-      synchronize: true, // This for development
-      autoLoadEntities: true,
+      synchronize: false, //При продакшне поменять на false!!!!
     }),
-    // TypeOrmModule.forRoot({
-    //   type: 'postgres',
-    //   host: 'localhost',
-    //   port: 5432,
-    //   username: 'postgres',
-    //   password: 'qwerty2002',
-    //   database: 'tjournal',
-    //   entities: [UserEntity, PostEntity, CommentEntity],
-    //   synchronize: false, //При продакшне поменять на false!!!!
-    // }),
     UserModule,
     PostModule,
     CommentModule,
